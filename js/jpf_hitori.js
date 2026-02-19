@@ -49,6 +49,8 @@
 
 var allCells;
 
+window.onload = startUp;
+
 function startUp() {
    // Insert the title for the first hitori puzzle
    document.getElementById("puzzleTitle").innerHTML = "Puzzle 1";
@@ -58,11 +60,30 @@ function startUp() {
 
    var puzzleButtons = document.getElementsByClassName("puzzles");
    for (var i = 0; i < puzzleButtons.length; i++) {
-      puzzleButtons[i].onclick = switchPuzzle();
+      puzzleButtons[i].onclick = switchPuzzle;
    }
 
+setupPuzzle();
 
 }
+
+function switchPuzzle(e) {
+   var puzzleID = e.target.id;
+
+   var puzzleTitle = e.target.value;
+   document.getElementById("puzzleTitle").innerHTML = puzzleTitle;
+
+   switch (puzzleID) {
+      case "hitori1":
+         document.getElementById("puzzle").innerHTML = drawPuzzle(hitori1Numbers, hitori1Blocks, hitori1Rating);
+         break;
+
+      case "hitori2":
+         document.getElementById("puzzle").innerHTML = drawPuzzle()
+   }
+}
+
+
 
 
 
