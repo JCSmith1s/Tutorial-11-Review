@@ -58,32 +58,67 @@ function startUp() {
    // Insert the HTML code for the first puzzle table
    document.getElementById("puzzle").innerHTML = drawHitori(hitori1Numbers, hitori1Blocks, hitori1Rating );
 
+   // Add event handlers for the puzzle buttons
    var puzzleButtons = document.getElementsByClassName("puzzles");
    for (var i = 0; i < puzzleButtons.length; i++) {
       puzzleButtons[i].onclick = switchPuzzle;
    }
 
-setupPuzzle();
+      setupPuzzle();
+
+            
+      
+      
+
+   document.getElementById("solve").addEventListener("click", showSolution)
+      
+      
 
 }
 
 function switchPuzzle(e) {
+   if(confirm("You will lose all of your work on the puzzle! Continue?")) {
    var puzzleID = e.target.id;
 
    var puzzleTitle = e.target.value;
    document.getElementById("puzzleTitle").innerHTML = puzzleTitle;
 
    switch (puzzleID) {
-      case "hitori1":
-         document.getElementById("puzzle").innerHTML = drawPuzzle(hitori1Numbers, hitori1Blocks, hitori1Rating);
+      case "puzzle1":
+         document.getElementById("puzzle").innerHTML = drawHitori(hitori1Numbers, hitori1Blocks, hitori1Rating);
          break;
 
-      case "hitori2":
-         document.getElementById("puzzle").innerHTML = drawPuzzle()
+      case "puzzle2":
+         document.getElementById("puzzle").innerHTML = drawHitori(hitori2Numbers, hitori2Blocks, hitori2Rating);
+         break;
+
+      case "puzzle3":
+         document.getElementById("puzzle").innerHTML = drawHitori(hitori3Numbers, hitori3Blocks, hitori3Rating);
+         break;
    }
+
+   setupPuzzle();
 }
 
+}
 
+function setupPuzzle() {
+   allCells = document.querySelectorAll("table#hitoriGrid td");
+
+   for (let i = 0; i < allCells.length; i++) {
+      allCells[i].style.backgroundColor = "white";
+      allCells[i].style.color = "black";
+      allCells[i].style.borderRadius = "0";
+
+
+
+   }
+   
+   
+   
+   
+   
+}
 
 
 
